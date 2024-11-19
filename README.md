@@ -45,5 +45,5 @@ The GUI can also be customized using the following command-line arguments:
 
 ## Example
 ```bash
-python PyMediaPlayer.py apt.mp4 -l -vol 0.8 -fps 30
+python PyMediaPlayer.py "test-video.mp4" -l -vol 0.8 -fps 30
 ```

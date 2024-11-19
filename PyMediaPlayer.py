@@ -208,7 +208,7 @@ class MediaPlayer:
         slide_bar = button.Range(
             surface_screen=self.screen,
             rect=pygame.Rect(16, 0, 0, 8),
-            thumb_size=(16, 16),
+            # thumb_size=(16, 16),
             outline_size=2,
             track_color=button_color['normal'],
             outline_color=button_color['outline'],
@@ -246,17 +246,18 @@ class MediaPlayer:
         def pause_video():
             nonlocal is_pause
             is_pause = not is_pause
-            pause_button.color = button_color_act(is_pause)
-            if self.video.is_play():
+            if self.video.is_play:
                 if is_pause:
                     self.video.pause()
                 else:
                     self.video.unpause()
             else:
                 self.video.play(self.video._Video__loops)
+                is_pause = False
+            pause_button.color = button_color_act(is_pause)
 
         def mute_video():
-            if self.video.is_mute():
+            if self.video.is_mute:
                 self.video.unmute()
                 mute_button.color = button_color['normal']
             else:
@@ -389,8 +390,8 @@ class MediaPlayer:
                          f'Position Colour: {colour_str}\n'
                          f'Frames Cache / Total: {self.video.get_total_cache_frame()} / ~{self.video.get_total_frame()}\n'
                          f'Volume: {int(self.video.get_volume() * 100)}\n'
-                         f'Pause: {self.video.is_pause()}\n'
-                         f'Mute: {self.video.is_mute()}\n'
+                         f'Pause: {self.video.is_pause}\n'
+                         f'Mute: {self.video.is_mute}\n'
                          f'{loop_str}'
                          f'FPS: (app={int(self.clock.get_fps())}, video={int(self.video.get_original_clip().fps)})',
                     wraplength=width_screen - 20,
